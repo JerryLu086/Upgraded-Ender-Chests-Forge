@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.kyrptonaught.upgradedechests.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "upgradedechests.refmap.json",
+  "mixins": [
+    "ExplosionDamageCalculatorMixin",
+    "PlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

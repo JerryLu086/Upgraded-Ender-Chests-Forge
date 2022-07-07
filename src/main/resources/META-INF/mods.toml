@@ -1,0 +1,12 @@
+modLoader="javafml"
+loaderVersion="[40,)"
+license="All rights reserved"
+
+
+[[mods]]
+    modId="upgradedechests"
+    version="1.0.1-1.18"
+    displayName="Upgraded Ender Chests"
+    logoFile="pack.png"
+    authors="kyrptonaught"
+    description="More Ender chests!"
