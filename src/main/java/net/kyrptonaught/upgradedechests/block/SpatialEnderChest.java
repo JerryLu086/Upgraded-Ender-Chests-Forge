@@ -18,6 +18,7 @@ import net.minecraft.world.entity.monster.piglin.PiglinAi;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -67,6 +68,11 @@ public class SpatialEnderChest extends CustomChestBase {
             }
         }
         return InteractionResult.SUCCESS;
+    }
+
+    @Override
+    public float getExplosionResistance(BlockState state, BlockGetter getter, BlockPos pos, Explosion explosion) {
+        return explosion.getExploder() instanceof Creeper creeper && creeper.isPowered() && state.getBlock() instanceof SpatialEnderChest ? 0F : super.getExplosionResistance(state, getter, pos, explosion);
     }
 
     @Override
