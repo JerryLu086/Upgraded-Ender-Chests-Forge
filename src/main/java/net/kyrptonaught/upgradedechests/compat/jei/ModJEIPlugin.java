@@ -1,4 +1,4 @@
-package net.kyrptonaught.upgradedechests.compat.jei.category;
+package net.kyrptonaught.upgradedechests.compat.jei;
 
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
