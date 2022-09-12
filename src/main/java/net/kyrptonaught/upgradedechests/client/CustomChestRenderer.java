@@ -18,8 +18,8 @@ public class CustomChestRenderer<T extends BlockEntity & LidBlockEntity> extends
    public static final ResourceLocation SPATIAL_RL = new ResourceLocation(UpgradedEnderChests.MOD_ID, "blocks/spatial_ender_chest");
    public static final ResourceLocation RIFT_RL = new ResourceLocation(UpgradedEnderChests.MOD_ID, "blocks/rift_ender_chest");
 
-   public CustomChestRenderer(BlockEntityRendererProvider.Context pContext) {
-      super(pContext);
+   public CustomChestRenderer(BlockEntityRendererProvider.Context context) {
+      super(context);
    }
 
    @Override

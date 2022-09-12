@@ -1,6 +1,6 @@
 package net.kyrptonaught.upgradedechests.block;
 
-import net.kyrptonaught.upgradedechests.Util;
+import net.kyrptonaught.upgradedechests.Utils;
 import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
 import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
 import net.kyrptonaught.upgradedechests.block.container.SpatialContainer;
@@ -34,7 +34,7 @@ import java.util.Random;
 
 public class SpatialEnderChest extends CustomChestBase {
     public static TranslatableComponent SPATIAL_CHEST_TITLE = new TranslatableComponent("block.upgradedechests.spatial_ender_chest");
-    public SpatialEnderChest(BlockBehaviour.Properties builder) {
+    public SpatialEnderChest(Properties builder) {
         super(builder, ModTiles.SPATIAL_ENDER_CHEST::get);
     }
 
@@ -51,7 +51,7 @@ public class SpatialEnderChest extends CustomChestBase {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-        Util.addPortalLikeParticle(ModParticles.GREEN_PORTAL.get(), level, pos, random);
+        Utils.addPortalLikeParticle(ModParticles.GREEN_PORTAL.get(), level, pos, random);
     }
 
     @Override

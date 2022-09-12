@@ -185,7 +185,7 @@ public class RiftEnderChestTile extends CustomChestTileBase implements Container
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
         if (!remove && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (this.itemHandler == null)
-                this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new InvWrapper(getContainer()));
+                this.itemHandler = LazyOptional.of(() -> new InvWrapper(getContainer()));
             return itemHandler.cast();
         }
         return super.getCapability(cap, side);

@@ -10,8 +10,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ColoredPortalParticle extends PortalParticle {
-    protected ColoredPortalParticle(ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-        super(clientWorld, d, e, f, g, h, i);
+    protected ColoredPortalParticle(ClientLevel level, double d, double e, double f, double g, double h, double i) {
+        super(level, d, e, f, g, h, i);
     }
 
     @OnlyIn(Dist.CLIENT)

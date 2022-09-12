@@ -6,7 +6,7 @@ import net.minecraft.world.level.Level;
 
 import java.util.Random;
 
-public class Util {
+public class Utils {
     public static void addPortalLikeParticle(ParticleOptions particle, Level level, BlockPos pos, Random random) {
         for (int i = 0; i < 3; ++i) {
             int j = random.nextInt(2) * 2 - 1;

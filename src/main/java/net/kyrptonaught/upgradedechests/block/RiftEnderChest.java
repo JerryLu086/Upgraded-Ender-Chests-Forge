@@ -1,6 +1,6 @@
 package net.kyrptonaught.upgradedechests.block;
 
-import net.kyrptonaught.upgradedechests.Util;
+import net.kyrptonaught.upgradedechests.Utils;
 import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
 import net.kyrptonaught.upgradedechests.block.tile.RiftEnderChestTile;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
@@ -30,7 +30,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 
 public class RiftEnderChest extends CustomChestBase {
-    public RiftEnderChest(BlockBehaviour.Properties builder) {
+    public RiftEnderChest(Properties builder) {
         super(builder,  ModTiles.RIFT_ENDER_CHEST::get);
     }
 
@@ -47,7 +47,7 @@ public class RiftEnderChest extends CustomChestBase {
 
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
-        Util.addPortalLikeParticle(ModParticles.BLUE_PORTAL.get(), level, pos, random);
+        Utils.addPortalLikeParticle(ModParticles.BLUE_PORTAL.get(), level, pos, random);
     }
 
     @Override
