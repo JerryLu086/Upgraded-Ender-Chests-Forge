@@ -4,6 +4,7 @@ import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -23,10 +24,8 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import java.util.Random;
 import java.util.function.Supplier;
 
-// Basically a rip-off'd version of EnderChestBlock
 public abstract class CustomChestBase<E extends CustomChestTileBase> extends AbstractChestBlock<E> implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -92,7 +91,7 @@ public abstract class CustomChestBase<E extends CustomChestTileBase> extends Abs
     }
 
     @Override
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, Random random) {
+    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         BlockEntity tile = level.getBlockEntity(pos);
         if (tile instanceof CustomChestTileBase chest) {
             chest.recheckOpen();

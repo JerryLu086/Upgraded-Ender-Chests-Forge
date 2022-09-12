@@ -1,12 +1,28 @@
 modLoader="javafml"
-loaderVersion="[40,)"
-license="All rights reserved"
+loaderVersion="[41,)"
+license="MIT License"
 
 
 [[mods]]
     modId="upgradedechests"
-    version="1.0.1-1.18"
+    version="1.0.1-1.19"
     displayName="Upgraded Ender Chests"
     logoFile="pack.png"
     authors="kyrptonaught"
-    description="More Ender chests!"
+    description="More Ender Chests!"
+    itemIcon="upgradedechests:rift_ender_chest"
+    configBackground="minecraft:textures/block/end_stone_bricks.png" # But no config here, pretty cool huh?
+
+[[dependencies.upgradedechests]]
+    modId="forge"
+    mandatory=true
+    versionRange="[41,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.upgradedechests]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.19.2,1.20)"
+    ordering="NONE"
+    side="BOTH"

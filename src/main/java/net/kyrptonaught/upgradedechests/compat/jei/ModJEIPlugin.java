@@ -6,7 +6,7 @@ import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.kyrptonaught.upgradedechests.UpgradedEnderChests;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
-import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 
@@ -19,6 +19,6 @@ public class ModJEIPlugin implements IModPlugin {
 
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
-        registration.addIngredientInfo(new ItemStack(ModItems.RIFT_ENDER_CHEST.get()), VanillaTypes.ITEM_STACK, new TranslatableComponent("jei." + UpgradedEnderChests.MOD_ID + ".rift_ender_chest.info"));
+        registration.addIngredientInfo(new ItemStack(ModItems.RIFT_ENDER_CHEST.get()), VanillaTypes.ITEM_STACK, Component.translatable("jei." + UpgradedEnderChests.MOD_ID + ".rift_ender_chest.info"));
     }
 }

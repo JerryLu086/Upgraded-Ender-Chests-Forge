@@ -9,7 +9,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModTiles {
-    public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, UpgradedEnderChests.MOD_ID);
+    public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, UpgradedEnderChests.MOD_ID);
 
     public static final RegistryObject<BlockEntityType<SpatialEnderChestTile>> SPATIAL_ENDER_CHEST = TILES.register("spatial_ender_chest_tile",
             () -> BlockEntityType.Builder.of(SpatialEnderChestTile::new, ModBlocks.SPATIAL_ENDER_CHEST.get()).build(null));
