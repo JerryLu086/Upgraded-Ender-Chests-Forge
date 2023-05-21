@@ -1,0 +1,10 @@
+{
+  "block.upgradedechests.spatial_ender_chest": "脹空箱",
+  "block.upgradedechests.rift_ender_chest": "元隙箱",
+
+  "block.upgradedechests.rift_ender_chest.title": "元隙箱 (所有者: %s)",
+  "block.upgradedechests.rift_ender_chest.invalid_1": "此元隙箱的所有權尚未指向任何玩家",
+  "block.upgradedechests.rift_ender_chest.invalid_2": "此元隙箱之所有者必須上線才可使用",
+
+  "jei.upgradedechests.rift_ender_chest.info": "藉由高壓苦力怕爆炸產生的能量，可使空脹箱進一步轉化成為元隙箱。"
+}

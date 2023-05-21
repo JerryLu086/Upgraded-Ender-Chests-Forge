@@ -1,0 +1,9 @@
+{
+  "block.upgradedechests.spatial_ender_chest": "Baule di ender spaziale",
+  "block.upgradedechests.rift_ender_chest": "Baule di ender fratturato",
+
+  "block.upgradedechests.rift_ender_chest.title": "Baule fratturato (Proprietario: %s)",
+  "block.upgradedechests.rift_ender_chest.invalid_2": "Il giocatore collegato deve essere online per usarlo",
+
+  "jei.upgradedechests.rift_ender_chest.info": "Usando la potenza di un esplosione di un Creeper caricato, è possibile creare un RIFTECHEST facendo esplodere un SPACIALECHEST piazzato"
+}
