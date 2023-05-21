@@ -102,10 +102,8 @@ dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
     annotationProcessor "org.spongepowered:mixin:${mixin_version}:processor"
 
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")
-    compileOnly fg.deobf("mezz.jei:jei-${mc_version}-forge-api:${jei_version}")
-
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}-forge:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 jar {
@@ -115,7 +113,7 @@ jar {
                 "Specification-Vendor": "kyrptonaught",
                 "Specification-Version": "1",
                 "Implementation-Title": project.name,
-                "Implementation-Version": project.jar.archiveVersion,
+                "Implementation-Version": "${version}",
                 "Implementation-Vendor": "kyrptonaught",
                 "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 "MixinConfigs": "upgradedechests.mixins.json"
