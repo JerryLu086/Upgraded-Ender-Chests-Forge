@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.client.event.ParticleFactoryRegisterEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,9 +18,9 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = UpgradedEnderChests.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientSetups {
     @SubscribeEvent
-    public static void registerParticles(RegisterParticleProvidersEvent event) {
-        Minecraft.getInstance().particleEngine.register(ModParticles.GREEN_PORTAL.get(), ColoredPortalParticle.GreenProvider::new);
-        Minecraft.getInstance().particleEngine.register(ModParticles.BLUE_PORTAL.get(), ColoredPortalParticle.BlueProvider::new);
+    public static void registerParticles(ParticleFactoryRegisterEvent event) {
+        Minecraft.getInstance().particleEngine.register(ModParticles.GREEN_PORTAL.get(), ColoredPortalParticle.GreenFactory::new);
+        Minecraft.getInstance().particleEngine.register(ModParticles.BLUE_PORTAL.get(), ColoredPortalParticle.BlueFactory::new);
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)

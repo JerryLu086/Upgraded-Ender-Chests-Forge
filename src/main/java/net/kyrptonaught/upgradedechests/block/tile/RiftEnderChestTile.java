@@ -14,8 +14,8 @@ import net.minecraft.world.inventory.PlayerEnderChestContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
@@ -183,9 +183,9 @@ public class RiftEnderChestTile extends CustomChestTileBase implements Container
     @Nonnull
     @Override
     public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nullable Direction side) {
-        if (!remove && cap == ForgeCapabilities.ITEM_HANDLER) {
+        if (!remove && cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
             if (this.itemHandler == null)
-                this.itemHandler = net.minecraftforge.common.util.LazyOptional.of(() -> new InvWrapper(getContainer()));
+                this.itemHandler = LazyOptional.of(() -> new InvWrapper(getContainer()));
             return itemHandler.cast();
         }
         return super.getCapability(cap, side);

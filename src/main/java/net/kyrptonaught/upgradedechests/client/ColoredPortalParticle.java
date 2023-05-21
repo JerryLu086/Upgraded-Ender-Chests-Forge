@@ -10,15 +10,15 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 public class ColoredPortalParticle extends PortalParticle {
-    protected ColoredPortalParticle(ClientLevel clientWorld, double d, double e, double f, double g, double h, double i) {
-        super(clientWorld, d, e, f, g, h, i);
+    protected ColoredPortalParticle(ClientLevel level, double d, double e, double f, double g, double h, double i) {
+        super(level, d, e, f, g, h, i);
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class GreenProvider implements ParticleProvider<SimpleParticleType> {
+    public static class GreenFactory implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet sprite;
 
-        public GreenProvider(SpriteSet p_107570_) {
+        public GreenFactory(SpriteSet p_107570_) {
             this.sprite = p_107570_;
         }
 
@@ -31,10 +31,10 @@ public class ColoredPortalParticle extends PortalParticle {
     }
 
     @OnlyIn(Dist.CLIENT)
-    public static class BlueProvider implements ParticleProvider<SimpleParticleType> {
+    public static class BlueFactory implements ParticleProvider<SimpleParticleType> {
         private final SpriteSet sprite;
 
-        public BlueProvider(SpriteSet p_107570_) {
+        public BlueFactory(SpriteSet p_107570_) {
             this.sprite = p_107570_;
         }
 

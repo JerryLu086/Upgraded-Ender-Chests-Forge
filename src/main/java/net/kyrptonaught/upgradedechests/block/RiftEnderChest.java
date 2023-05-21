@@ -6,9 +6,8 @@ import net.kyrptonaught.upgradedechests.block.tile.RiftEnderChestTile;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
 import net.kyrptonaught.upgradedechests.registry.ModTiles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -23,14 +22,14 @@ import net.minecraft.world.level.block.ChestBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class RiftEnderChest extends CustomChestBase {
-    public RiftEnderChest(BlockBehaviour.Properties builder) {
+    public RiftEnderChest(Properties builder) {
         super(builder,  ModTiles.RIFT_ENDER_CHEST::get);
     }
 
@@ -46,7 +45,7 @@ public class RiftEnderChest extends CustomChestBase {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
         Utils.addPortalLikeParticle(ModParticles.BLUE_PORTAL.get(), level, pos, random);
     }
 
@@ -78,12 +77,12 @@ public class RiftEnderChest extends CustomChestBase {
             BlockEntity tile = level.getBlockEntity(pos);
             if (tile instanceof RiftEnderChestTile chest) {
                 if (!chest.hasStoredPlayer())
-                    player.displayClientMessage(Component.translatable("block.upgradedechests.rift_ender_chest.invalid_1"), true);
+                    player.displayClientMessage(new TranslatableComponent("block.upgradedechests.rift_ender_chest.invalid_1"), true);
                 if (chest.getContainer() == null)
-                    player.displayClientMessage(Component.translatable("block.upgradedechests.rift_ender_chest.invalid_2"), true);
+                    player.displayClientMessage(new TranslatableComponent("block.upgradedechests.rift_ender_chest.invalid_2"), true);
                 else {
                     player.openMenu(!ChestBlock.isChestBlockedAt(level, pos) ? new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.threeRows(i, playerInventory, chest),
-                            Component.translatable("block.upgradedechests.rift_ender_chest.title", chest.getPlayerName())) : null);
+                            new TranslatableComponent("block.upgradedechests.rift_ender_chest.title", chest.getPlayerName())) : null);
                     player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
                     PiglinAi.angerNearbyPiglins(player, true);
                     return InteractionResult.CONSUME;

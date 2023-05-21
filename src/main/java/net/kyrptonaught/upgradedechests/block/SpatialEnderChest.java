@@ -1,16 +1,15 @@
 package net.kyrptonaught.upgradedechests.block;
 
 import net.kyrptonaught.upgradedechests.Utils;
+import net.kyrptonaught.upgradedechests.block.container.SpatialContainer;
 import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
 import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
-import net.kyrptonaught.upgradedechests.block.container.SpatialContainer;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
 import net.kyrptonaught.upgradedechests.registry.ModTiles;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.SimpleMenuProvider;
@@ -26,15 +25,15 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 public class SpatialEnderChest extends CustomChestBase {
-    public static Component SPATIAL_CHEST_TITLE = Component.translatable("block.upgradedechests.spatial_ender_chest");
-    public SpatialEnderChest(BlockBehaviour.Properties builder) {
+    public static TranslatableComponent SPATIAL_CHEST_TITLE = new TranslatableComponent("block.upgradedechests.spatial_ender_chest");
+    public SpatialEnderChest(Properties builder) {
         super(builder, ModTiles.SPATIAL_ENDER_CHEST::get);
     }
 
@@ -50,7 +49,7 @@ public class SpatialEnderChest extends CustomChestBase {
     }
 
     @Override
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(BlockState state, Level level, BlockPos pos, Random random) {
         Utils.addPortalLikeParticle(ModParticles.GREEN_PORTAL.get(), level, pos, random);
     }
 

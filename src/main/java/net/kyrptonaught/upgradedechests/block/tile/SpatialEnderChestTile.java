@@ -1,7 +1,7 @@
 package net.kyrptonaught.upgradedechests.block.tile;
 
-import net.kyrptonaught.upgradedechests.client.CustomChestRenderer;
 import net.kyrptonaught.upgradedechests.block.container.SpatialContainer;
+import net.kyrptonaught.upgradedechests.client.CustomChestRenderer;
 import net.kyrptonaught.upgradedechests.registry.ModTiles;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
