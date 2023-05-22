@@ -4,7 +4,9 @@ import net.kyrptonaught.upgradedechests.registry.ModBlocks;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
 import net.kyrptonaught.upgradedechests.registry.ModTiles;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -23,7 +25,15 @@ public class UpgradedEnderChests {
         ModTiles.TILES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModParticles.PARTICLES.register(modEventBus);
+        modEventBus.addListener(this::addToTab);
 
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void addToTab(CreativeModeTabEvent.BuildContents event) {
+        if (event.getTab() == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
+            event.accept(ModItems.RIFT_ENDER_CHEST.get());
+            event.accept(ModItems.SPATIAL_ENDER_CHEST.get());
+        }
     }
 }

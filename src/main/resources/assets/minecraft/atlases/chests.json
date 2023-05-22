@@ -1,0 +1,12 @@
+{
+  "sources": [
+    {
+      "type": "single",
+      "resource": "upgradedechests:blocks/rift_ender_chest"
+    },
+    {
+      "type": "single",
+      "resource": "upgradedechests:blocks/spatial_ender_chest"
+    }
+  ]
+}

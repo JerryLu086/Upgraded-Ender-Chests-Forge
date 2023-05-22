@@ -13,7 +13,7 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, UpgradedEnderChests.MOD_ID);
 
     public static final RegistryObject<Item> SPATIAL_ENDER_CHEST = ITEMS.register("spatial_ender_chest",
-            () -> new ChestItemWithCustomRenderer(ModBlocks.SPATIAL_ENDER_CHEST.get(), new BlockItem.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+            () -> new ChestItemWithCustomRenderer(ModBlocks.SPATIAL_ENDER_CHEST.get(), new BlockItem.Properties()));
     public static final RegistryObject<Item> RIFT_ENDER_CHEST = ITEMS.register("rift_ender_chest",
-            () -> new ChestItemWithCustomRenderer(ModBlocks.RIFT_ENDER_CHEST.get(), new BlockItem.Properties().tab(CreativeModeTab.TAB_DECORATIONS)));
+            () -> new ChestItemWithCustomRenderer(ModBlocks.RIFT_ENDER_CHEST.get(), new BlockItem.Properties()));
 }
