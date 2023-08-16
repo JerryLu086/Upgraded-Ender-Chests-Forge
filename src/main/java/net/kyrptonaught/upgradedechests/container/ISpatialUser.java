@@ -1,4 +1,4 @@
-package net.kyrptonaught.upgradedechests.block.container;
+package net.kyrptonaught.upgradedechests.container;
 
 import net.minecraft.world.SimpleContainer;
 

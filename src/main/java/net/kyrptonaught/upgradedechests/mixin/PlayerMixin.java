@@ -1,6 +1,6 @@
 package net.kyrptonaught.upgradedechests.mixin;
 
-import net.kyrptonaught.upgradedechests.block.container.ISpatialUser;
+import net.kyrptonaught.upgradedechests.container.ISpatialUser;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;

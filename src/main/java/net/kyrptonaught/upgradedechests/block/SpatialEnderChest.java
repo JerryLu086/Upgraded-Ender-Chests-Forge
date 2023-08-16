@@ -3,7 +3,7 @@ package net.kyrptonaught.upgradedechests.block;
 import net.kyrptonaught.upgradedechests.Utils;
 import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
 import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
-import net.kyrptonaught.upgradedechests.block.container.SpatialContainer;
+import net.kyrptonaught.upgradedechests.container.SpatialContainer;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
 import net.kyrptonaught.upgradedechests.registry.ModTiles;
