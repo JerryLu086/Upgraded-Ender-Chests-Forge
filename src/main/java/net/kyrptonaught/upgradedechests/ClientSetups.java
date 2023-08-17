@@ -3,7 +3,7 @@ package net.kyrptonaught.upgradedechests;
 import net.kyrptonaught.upgradedechests.client.ColoredPortalParticle;
 import net.kyrptonaught.upgradedechests.client.CustomChestRenderer;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
-import net.kyrptonaught.upgradedechests.registry.ModTiles;
+import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
@@ -25,8 +25,8 @@ public class ClientSetups {
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        BlockEntityRenderers.register(ModTiles.SPATIAL_ENDER_CHEST.get(), CustomChestRenderer::new);
-        BlockEntityRenderers.register(ModTiles.RIFT_ENDER_CHEST.get(), CustomChestRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.SPATIAL_ENDER_CHEST.get(), CustomChestRenderer::new);
+        BlockEntityRenderers.register(ModBlockEntities.RIFT_ENDER_CHEST.get(), CustomChestRenderer::new);
     }
 
     @SubscribeEvent

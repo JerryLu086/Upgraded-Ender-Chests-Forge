@@ -1,12 +1,12 @@
 package net.kyrptonaught.upgradedechests.container;
 
-import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
+import net.kyrptonaught.upgradedechests.block.blockEntities.SpatialEnderChestBlockEntity;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
 public class SpatialContainer extends SimpleContainer {
-    public SpatialEnderChestTile activeChest;
+    public SpatialEnderChestBlockEntity activeChest;
     private final Player playerEntity;
 
     public SpatialContainer(Player playerEntity) {

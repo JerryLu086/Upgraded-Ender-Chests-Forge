@@ -3,7 +3,7 @@ package net.kyrptonaught.upgradedechests;
 import net.kyrptonaught.upgradedechests.registry.ModBlocks;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
-import net.kyrptonaught.upgradedechests.registry.ModTiles;
+import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -20,7 +20,7 @@ public class UpgradedEnderChests {
         final IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModBlocks.BLOCKS.register(modEventBus);
-        ModTiles.TILES.register(modEventBus);
+        ModBlockEntities.BLOCK_ENTITIES.register(modEventBus);
         ModItems.ITEMS.register(modEventBus);
         ModParticles.PARTICLES.register(modEventBus);
 
