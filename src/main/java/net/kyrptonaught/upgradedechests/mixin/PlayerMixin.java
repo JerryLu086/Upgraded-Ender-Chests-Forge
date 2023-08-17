@@ -28,12 +28,12 @@ public abstract class PlayerMixin implements ISpatialUser {
     }
 
     @Override
-    public SimpleContainer getInventory() {
+    public SimpleContainer getSpatialSlots() {
         return this.spatialContainer;
     }
 
     @Override
-    public void setSpatialInventory(SimpleContainer container) {
-        this.spatialContainer = container;
+    public void setSpatialSlots(SimpleContainer targetContainer) {
+        this.spatialContainer = targetContainer;
     }
 }
