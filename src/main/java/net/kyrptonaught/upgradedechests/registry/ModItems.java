@@ -3,7 +3,6 @@ package net.kyrptonaught.upgradedechests.registry;
 import net.kyrptonaught.upgradedechests.UpgradedEnderChests;
 import net.kyrptonaught.upgradedechests.block.item.ChestItemWithCustomRenderer;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;

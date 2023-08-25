@@ -1,42 +1,38 @@
-package net.kyrptonaught.upgradedechests.block.container;
+package net.kyrptonaught.upgradedechests.container;
 
-import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
+import net.kyrptonaught.upgradedechests.block.blockEntities.SpatialEnderChestBlockEntity;
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 
-public class SpatialContainer extends SimpleContainer {
-    public SpatialEnderChestTile activeChest;
+public class MergedEnderChestContainer extends SimpleContainer {
+    public SpatialEnderChestBlockEntity activeChest;
     private final Player playerEntity;
 
-    public SpatialContainer(Player playerEntity) {
+    public MergedEnderChestContainer(Player playerEntity) {
+        super(54);
         this.playerEntity = playerEntity;
-    }
-
-    @Override
-    public int getContainerSize() {
-        return 54;
     }
 
     @Override
     public ItemStack getItem(int index) {
         if (index < 27)
             return playerEntity.getEnderChestInventory().getItem(index);
-        return ((ISpatialUser)playerEntity).getInventory().getItem(index - 27);
+        return ((ISpatialUser) playerEntity).getSpatialSlots().getItem(index - 27);
     }
 
     @Override
     public ItemStack removeItem(int index, int count) {
         if (index < 27)
             return playerEntity.getEnderChestInventory().removeItem(index, count);
-        return ((ISpatialUser) playerEntity).getInventory().removeItem(index - 27, count);
+        return ((ISpatialUser) playerEntity).getSpatialSlots().removeItem(index - 27, count);
     }
 
     @Override
     public ItemStack removeItemNoUpdate(int index) {
         if (index < 27)
             return playerEntity.getEnderChestInventory().removeItemNoUpdate(index);
-        return ((ISpatialUser) playerEntity).getInventory().removeItemNoUpdate(index - 27);
+        return ((ISpatialUser) playerEntity).getSpatialSlots().removeItemNoUpdate(index - 27);
     }
 
     @Override
@@ -44,13 +40,13 @@ public class SpatialContainer extends SimpleContainer {
         if (index < 27)
             playerEntity.getEnderChestInventory().setItem(index, stack);
         else
-            ((ISpatialUser) playerEntity).getInventory().setItem(index - 27, stack);
+            ((ISpatialUser) playerEntity).getSpatialSlots().setItem(index - 27, stack);
     }
 
     @Override
     public void setChanged() {
         playerEntity.getEnderChestInventory().setChanged();
-        ((ISpatialUser) playerEntity).getInventory().setChanged();
+        ((ISpatialUser) playerEntity).getSpatialSlots().setChanged();
     }
 
     @Override
@@ -60,12 +56,12 @@ public class SpatialContainer extends SimpleContainer {
 
     @Override
     public boolean isEmpty() {
-        return playerEntity.getEnderChestInventory().isEmpty() && ((ISpatialUser) playerEntity).getInventory().isEmpty();
+        return playerEntity.getEnderChestInventory().isEmpty() && ((ISpatialUser) playerEntity).getSpatialSlots().isEmpty();
     }
 
     @Override
     public void clearContent() {
-        ((ISpatialUser) playerEntity).getInventory().clearContent();
+        ((ISpatialUser) playerEntity).getSpatialSlots().clearContent();
         this.setChanged();
     }
 
@@ -82,9 +78,6 @@ public class SpatialContainer extends SimpleContainer {
         if (this.activeChest != null) {
             this.activeChest.stopOpen(player);
         }
-
-        /*player.getEnderChestInventory().stopOpen(player);
-        ((ISpatialUser) playerEntity).getInventory().stopOpen(player);*/
 
         super.stopOpen(player);
         this.activeChest = null;
