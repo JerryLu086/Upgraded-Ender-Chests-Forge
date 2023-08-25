@@ -3,7 +3,7 @@ package net.kyrptonaught.upgradedechests.block;
 import net.kyrptonaught.upgradedechests.Utils;
 import net.kyrptonaught.upgradedechests.block.blockEntities.CustomChestBlockEntity;
 import net.kyrptonaught.upgradedechests.block.blockEntities.SpatialEnderChestBlockEntity;
-import net.kyrptonaught.upgradedechests.container.SpatialContainer;
+import net.kyrptonaught.upgradedechests.container.MergedEnderChestContainer;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
 import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
@@ -56,18 +56,19 @@ public class SpatialEnderChest extends CustomChestBase {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (!level.isClientSide) {
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof SpatialEnderChestBlockEntity chest) {
-                SpatialContainer container = new SpatialContainer(player);
-                container.activeChest = chest;
-                player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.sixRows(i, playerInventory, container), SPATIAL_CHEST_TITLE));
-                player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
-                PiglinAi.angerNearbyPiglins(player, true);
-                return InteractionResult.CONSUME;
-            }
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        BlockPos above = pos.above();
+        if (level.getBlockState(above).isRedstoneConductor(level, above)) {
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        } else if (!level.isClientSide && blockEntity instanceof SpatialEnderChestBlockEntity chest) {
+            MergedEnderChestContainer container = new MergedEnderChestContainer(player);
+            container.activeChest = chest;
+            player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.sixRows(i, playerInventory, container), SPATIAL_CHEST_TITLE));
+            player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
+            PiglinAi.angerNearbyPiglins(player, true);
+            return InteractionResult.CONSUME;
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override

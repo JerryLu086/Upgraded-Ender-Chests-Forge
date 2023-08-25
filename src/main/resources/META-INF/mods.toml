@@ -5,7 +5,7 @@ license="MIT License"
 
 [[mods]]
     modId="upgradedechests"
-    version="1.0.2-1.19"
+    version="1.0.3-1.19"
     displayName="Upgraded Ender Chests"
     logoFile="pack.png"
     authors="kyrptonaught"

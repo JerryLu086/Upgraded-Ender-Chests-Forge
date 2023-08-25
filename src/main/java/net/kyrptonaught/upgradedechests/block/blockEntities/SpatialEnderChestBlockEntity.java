@@ -1,7 +1,7 @@
 package net.kyrptonaught.upgradedechests.block.blockEntities;
 
 import net.kyrptonaught.upgradedechests.client.CustomChestRenderer;
-import net.kyrptonaught.upgradedechests.container.SpatialContainer;
+import net.kyrptonaught.upgradedechests.container.MergedEnderChestContainer;
 import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
@@ -16,7 +16,7 @@ public class SpatialEnderChestBlockEntity extends CustomChestBlockEntity {
 
     @Override
     public boolean isOwnContainer(Player player) {
-        if (player.containerMenu instanceof ChestMenu menu && menu.getContainer() instanceof SpatialContainer container) {
+        if (player.containerMenu instanceof ChestMenu menu && menu.getContainer() instanceof MergedEnderChestContainer container) {
             return container.activeChest == SpatialEnderChestBlockEntity.this;
         } else {
             return false;
