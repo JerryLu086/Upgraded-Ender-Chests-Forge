@@ -1,10 +1,10 @@
 package net.kyrptonaught.upgradedechests.block;
 
 import net.kyrptonaught.upgradedechests.Utils;
-import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
-import net.kyrptonaught.upgradedechests.block.tile.RiftEnderChestTile;
+import net.kyrptonaught.upgradedechests.block.blockEntities.CustomChestBlockEntity;
+import net.kyrptonaught.upgradedechests.block.blockEntities.RiftEnderChestBlockEntity;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
-import net.kyrptonaught.upgradedechests.registry.ModTiles;
+import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
@@ -30,18 +30,18 @@ import java.util.Random;
 
 public class RiftEnderChest extends CustomChestBase {
     public RiftEnderChest(Properties builder) {
-        super(builder,  ModTiles.RIFT_ENDER_CHEST::get);
+        super(builder,  ModBlockEntities.RIFT_ENDER_CHEST::get);
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new RiftEnderChestTile(pos, state);
+        return new RiftEnderChestBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide ? createTickerHelper(type, ModTiles.RIFT_ENDER_CHEST.get(), CustomChestTileBase::lidAnimateTick) : null;
+        return level.isClientSide ? createTickerHelper(type, ModBlockEntities.RIFT_ENDER_CHEST.get(), CustomChestBlockEntity::lidAnimateTick) : null;
     }
 
     @Override
@@ -65,7 +65,7 @@ public class RiftEnderChest extends CustomChestBase {
         if (!level.isClientSide)
             if (placer instanceof Player player) {
                 BlockEntity blockEntity = level.getBlockEntity(pos);
-                if (blockEntity instanceof RiftEnderChestTile chest) {
+                if (blockEntity instanceof RiftEnderChestBlockEntity chest) {
                     chest.setStoredPlayer(player);
                 }
             }
@@ -73,22 +73,23 @@ public class RiftEnderChest extends CustomChestBase {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (!level.isClientSide) {
-            BlockEntity tile = level.getBlockEntity(pos);
-            if (tile instanceof RiftEnderChestTile chest) {
-                if (!chest.hasStoredPlayer())
-                    player.displayClientMessage(new TranslatableComponent("block.upgradedechests.rift_ender_chest.invalid_1"), true);
-                if (chest.getContainer() == null)
-                    player.displayClientMessage(new TranslatableComponent("block.upgradedechests.rift_ender_chest.invalid_2"), true);
-                else {
-                    player.openMenu(!ChestBlock.isChestBlockedAt(level, pos) ? new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.threeRows(i, playerInventory, chest),
-                            new TranslatableComponent("block.upgradedechests.rift_ender_chest.title", chest.getPlayerName())) : null);
-                    player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
-                    PiglinAi.angerNearbyPiglins(player, true);
-                    return InteractionResult.CONSUME;
-                }
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        BlockPos above = pos.above();
+        if (level.getBlockState(above).isRedstoneConductor(level, above)) {
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        } else if (!level.isClientSide && blockEntity instanceof RiftEnderChestBlockEntity chest) {
+            if (!chest.hasStoredPlayer()) {
+                player.displayClientMessage(new TranslatableComponent("block.upgradedechests.rift_ender_chest.invalid_1"), true);
+            } else if (chest.getContainer() == null) {
+                player.displayClientMessage(new TranslatableComponent("block.upgradedechests.rift_ender_chest.invalid_2"), true);
+            } else {
+                player.openMenu(!ChestBlock.isChestBlockedAt(level, pos) ? new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.threeRows(i, playerInventory, chest),
+                        new TranslatableComponent("block.upgradedechests.rift_ender_chest.title", chest.getPlayerName())) : null);
+                player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
+                PiglinAi.angerNearbyPiglins(player, true);
+                return InteractionResult.CONSUME;
             }
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 }

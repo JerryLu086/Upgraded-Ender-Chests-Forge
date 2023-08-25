@@ -1,4 +1,4 @@
-package net.kyrptonaught.upgradedechests.block.tile;
+package net.kyrptonaught.upgradedechests.block.blockEntities;
 
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
@@ -9,9 +9,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.*;
 import net.minecraft.world.level.block.state.BlockState;
 
-public abstract class CustomChestTileBase extends BlockEntity implements LidBlockEntity {
-    public CustomChestTileBase(BlockEntityType<?> tile, BlockPos pos, BlockState state) {
-        super(tile, pos, state);
+public abstract class CustomChestBlockEntity extends BlockEntity implements LidBlockEntity {
+    public CustomChestBlockEntity(BlockEntityType<?> blockEntity, BlockPos pos, BlockState state) {
+        super(blockEntity, pos, state);
     }
 
     private final ChestLidController chestLidController = new ChestLidController();
@@ -28,12 +28,12 @@ public abstract class CustomChestTileBase extends BlockEntity implements LidBloc
 
         @Override
         public void openerCountChanged(Level level, BlockPos pos, BlockState state, int prev, int pNew) {
-            level.blockEvent(CustomChestTileBase.this.worldPosition, state.getBlock(), 1, pNew);
+            level.blockEvent(CustomChestBlockEntity.this.worldPosition, state.getBlock(), 1, pNew);
         }
 
         @Override
         public boolean isOwnContainer(Player player) {
-            return CustomChestTileBase.this.isOwnContainer(player);
+            return CustomChestBlockEntity.this.isOwnContainer(player);
         }
     };
 
@@ -41,8 +41,8 @@ public abstract class CustomChestTileBase extends BlockEntity implements LidBloc
 
     public abstract Material getChestMaterial();
 
-    public static void lidAnimateTick(Level level, BlockPos pos, BlockState state, CustomChestTileBase tile) {
-        tile.chestLidController.tickLid();
+    public static void lidAnimateTick(Level level, BlockPos pos, BlockState state, CustomChestBlockEntity blockEntity) {
+        blockEntity.chestLidController.tickLid();
     }
 
     @Override

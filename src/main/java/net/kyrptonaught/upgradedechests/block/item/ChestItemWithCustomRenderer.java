@@ -2,8 +2,8 @@ package net.kyrptonaught.upgradedechests.block.item;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.kyrptonaught.upgradedechests.block.CustomChestBase;
-import net.kyrptonaught.upgradedechests.block.tile.RiftEnderChestTile;
-import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
+import net.kyrptonaught.upgradedechests.block.blockEntities.RiftEnderChestBlockEntity;
+import net.kyrptonaught.upgradedechests.block.blockEntities.SpatialEnderChestBlockEntity;
 import net.kyrptonaught.upgradedechests.registry.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
@@ -30,8 +30,8 @@ public class ChestItemWithCustomRenderer extends BlockItem {
             public BlockEntityWithoutLevelRenderer getItemStackRenderer() {
                 Minecraft mc = Minecraft.getInstance();
                 return new BlockEntityWithoutLevelRenderer(mc.getBlockEntityRenderDispatcher(), mc.getEntityModels()) {
-                    SpatialEnderChestTile SPATIAL_TILE = new SpatialEnderChestTile(BlockPos.ZERO, ModBlocks.SPATIAL_ENDER_CHEST.get().defaultBlockState());
-                    RiftEnderChestTile RIFT_TILE = new RiftEnderChestTile(BlockPos.ZERO, ModBlocks.RIFT_ENDER_CHEST.get().defaultBlockState());
+                    SpatialEnderChestBlockEntity SPATIAL_TILE = new SpatialEnderChestBlockEntity(BlockPos.ZERO, ModBlocks.SPATIAL_ENDER_CHEST.get().defaultBlockState());
+                    RiftEnderChestBlockEntity RIFT_TILE = new RiftEnderChestBlockEntity(BlockPos.ZERO, ModBlocks.RIFT_ENDER_CHEST.get().defaultBlockState());
                     @Override
                     public void renderByItem(@Nonnull ItemStack stack, @Nonnull ItemTransforms.TransformType transformType, @Nonnull PoseStack poseStack, @Nonnull MultiBufferSource buffer, int combinedLight, int combinedOverlay) {
                         if (getBlock() instanceof CustomChestBase block)

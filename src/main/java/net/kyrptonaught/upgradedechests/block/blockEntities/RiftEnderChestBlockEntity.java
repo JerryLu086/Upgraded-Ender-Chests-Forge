@@ -1,7 +1,7 @@
-package net.kyrptonaught.upgradedechests.block.tile;
+package net.kyrptonaught.upgradedechests.block.blockEntities;
 
 import net.kyrptonaught.upgradedechests.client.CustomChestRenderer;
-import net.kyrptonaught.upgradedechests.registry.ModTiles;
+import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -23,19 +23,19 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.UUID;
 
-public class RiftEnderChestTile extends CustomChestTileBase implements Container {
+public class RiftEnderChestBlockEntity extends CustomChestBlockEntity implements Container {
     private LazyOptional<IItemHandler> itemHandler = LazyOptional.empty();
     public UUID storedPlayer;
 
-    public RiftEnderChestTile(BlockPos pos, BlockState state) {
-        super(ModTiles.RIFT_ENDER_CHEST.get(), pos, state);
+    public RiftEnderChestBlockEntity(BlockPos pos, BlockState state) {
+        super(ModBlockEntities.RIFT_ENDER_CHEST.get(), pos, state);
     }
 
     @Override
     public boolean isOwnContainer(Player player) {
         if (player.containerMenu instanceof ChestMenu menu) {
             Container container = menu.getContainer();
-            return container == RiftEnderChestTile.this;
+            return container == RiftEnderChestBlockEntity.this;
         } else {
             return false;
         }

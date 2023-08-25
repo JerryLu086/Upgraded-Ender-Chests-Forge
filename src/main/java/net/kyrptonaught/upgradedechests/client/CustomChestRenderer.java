@@ -1,7 +1,7 @@
 package net.kyrptonaught.upgradedechests.client;
 
 import net.kyrptonaught.upgradedechests.UpgradedEnderChests;
-import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
+import net.kyrptonaught.upgradedechests.block.blockEntities.CustomChestBlockEntity;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
@@ -23,8 +23,8 @@ public class CustomChestRenderer<T extends BlockEntity & LidBlockEntity> extends
    }
 
    @Override
-   protected Material getMaterial(T tile, ChestType type) {
-      return tile instanceof CustomChestTileBase chest ? chest.getChestMaterial() : null;
+   protected Material getMaterial(T blockEntity, ChestType type) {
+      return blockEntity instanceof CustomChestBlockEntity chest ? chest.getChestMaterial() : null;
    }
 
    public static Material createChestMaterial(ResourceLocation rl) {

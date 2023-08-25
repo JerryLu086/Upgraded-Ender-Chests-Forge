@@ -1,12 +1,12 @@
 package net.kyrptonaught.upgradedechests.block;
 
 import net.kyrptonaught.upgradedechests.Utils;
-import net.kyrptonaught.upgradedechests.block.container.SpatialContainer;
-import net.kyrptonaught.upgradedechests.block.tile.CustomChestTileBase;
-import net.kyrptonaught.upgradedechests.block.tile.SpatialEnderChestTile;
+import net.kyrptonaught.upgradedechests.container.MergedEnderChestContainer;
+import net.kyrptonaught.upgradedechests.block.blockEntities.CustomChestBlockEntity;
+import net.kyrptonaught.upgradedechests.block.blockEntities.SpatialEnderChestBlockEntity;
 import net.kyrptonaught.upgradedechests.registry.ModItems;
 import net.kyrptonaught.upgradedechests.registry.ModParticles;
-import net.kyrptonaught.upgradedechests.registry.ModTiles;
+import net.kyrptonaught.upgradedechests.registry.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.stats.Stats;
@@ -34,18 +34,18 @@ import java.util.Random;
 public class SpatialEnderChest extends CustomChestBase {
     public static TranslatableComponent SPATIAL_CHEST_TITLE = new TranslatableComponent("block.upgradedechests.spatial_ender_chest");
     public SpatialEnderChest(Properties builder) {
-        super(builder, ModTiles.SPATIAL_ENDER_CHEST::get);
+        super(builder, ModBlockEntities.SPATIAL_ENDER_CHEST::get);
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return new SpatialEnderChestTile(pos, state);
+        return new SpatialEnderChestBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide ? createTickerHelper(type, ModTiles.SPATIAL_ENDER_CHEST.get(), CustomChestTileBase::lidAnimateTick) : null;
+        return level.isClientSide ? createTickerHelper(type, ModBlockEntities.SPATIAL_ENDER_CHEST.get(), CustomChestBlockEntity::lidAnimateTick) : null;
     }
 
     @Override
@@ -55,18 +55,19 @@ public class SpatialEnderChest extends CustomChestBase {
 
     @Override
     public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result) {
-        if (!level.isClientSide) {
-            BlockEntity tile = level.getBlockEntity(pos);
-            if (tile instanceof SpatialEnderChestTile chest) {
-                SpatialContainer container = new SpatialContainer(player);
-                container.activeChest = chest;
-                player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.sixRows(i, playerInventory, container), SPATIAL_CHEST_TITLE));
-                player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
-                PiglinAi.angerNearbyPiglins(player, true);
-                return InteractionResult.CONSUME;
-            }
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        BlockPos above = pos.above();
+        if (level.getBlockState(above).isRedstoneConductor(level, above)) {
+            return InteractionResult.sidedSuccess(level.isClientSide);
+        } else if (!level.isClientSide && blockEntity instanceof SpatialEnderChestBlockEntity chest) {
+            MergedEnderChestContainer container = new MergedEnderChestContainer(player);
+            container.activeChest = chest;
+            player.openMenu(new SimpleMenuProvider((i, playerInventory, playerEntity) -> ChestMenu.sixRows(i, playerInventory, container), SPATIAL_CHEST_TITLE));
+            player.awardStat(Stats.CUSTOM.get(Stats.OPEN_ENDERCHEST));
+            PiglinAi.angerNearbyPiglins(player, true);
+            return InteractionResult.CONSUME;
         }
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     @Override
